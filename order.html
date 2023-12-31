@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Order</title>
+    <!-- Include your styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+        background-color: #3498db; /* Blue theme color */
+        color: white; /* Text color for better visibility */
+    }
+
+    th, td {
+        border: 2px solid #2980b9; /* Darker blue for borders */
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #2980b9; /* Darker blue for header background */
+    }
+
+        #confirmation-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        #total-bill {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #item-details {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        #payment-options {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .payment-option {
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .payment-option:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .selected {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+
+    <div id="confirmation-message">Kindly select a payment option</div>
+    <div id="total-bill"></div>
+    <div id="item-details"></div>
+    
+    <div id="payment-options">
+        <div class="payment-option" onclick="selectPaymentOption('Credit Card')">Credit Card</div>
+        <div class="payment-option" onclick="selectPaymentOption('PayPal')">PayPal</div>
+        <div class="payment-option" onclick="selectPaymentOption('Google Pay')">Google Pay</div>
+        <div class="payment-option" onclick="selectPaymentOption('Apple Pay')">Apple Pay</div>
+    </div>
+
+    <script>
+        // Retrieve the cart and total from local storage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log('Retrieved Cart:', cart); // Log the retrieved cart data to the console
+        let total = 0;
+    
+        for (const product of cart) {
+            total += product.price;
+        }
+    
+        // Display confirmation details
+        const confirmationMessage = document.getElementById('confirmation-message');
+        const totalBill = document.getElementById('total-bill');
+        const itemDetails = document.getElementById('item-details');
+    
+        totalBill.innerText = `Total Bill: $${total.toFixed(2)}`;
+    
+        // Function to handle the selection of payment options
+        function selectPaymentOption(option) {
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach((el) => el.classList.remove('selected'));
+    
+            // Use classList to add the 'selected' class to the clicked element
+            event.target.classList.add('selected');
+    
+            // Display item details in the final bill as a table
+            const tableHeader = '<tr><th>Item Name</th><th>Price</th></tr>';
+            const tableRows = cart.map(product => `<tr><td>${product.name}</td><td>$${product.price.toFixed(2)}</td></tr>`);
+            const totalRow = `<tr><td style="text-align: right;" colspan="2">Total: $${total.toFixed(2)}</td></tr>`;
+            const table = `<table>${tableHeader}${tableRows.join('')}${totalRow}</table>`;
+    
+            itemDetails.innerHTML = `<p>Items Bought:</p>${table}`;
+    
+            // Change confirmation message on selecting a payment option
+            confirmationMessage.innerText = 'Order confirmed';
+        }
+    
+        // Clear the cart after confirming the order
+        localStorage.removeItem('cart');
+    </script>
+    
+    
+    
+</body>
+</html>

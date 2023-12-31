@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <!-- Your styles or linked CSS file here -->
+    <style>
+        /* Add your login form styles here */
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background: rgb(152, 151, 151);
+}
+
+h1 {
+    text-align: center;
+    color: azure;
+    font-size: 50px;
+    font-family: cursive;
+}
+
+form {
+    width: 500px;
+    margin: 0 auto;
+    background:rgba(245, 245, 245, 0.463);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 15px 0;
+}
+
+label span {
+    font-size:20px;
+    color:black;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="username"],
+input[type="phoneno"],
+input[type="location"]
+ {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.submit {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.submit:hover {
+    background: #45a049;
+}
+body{
+background-image: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3B4MTM2OTgxMy1pbWFnZS1rd3Z4eHA5MS5qcGc.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+.no_account{
+    display: flex;
+
+}
+
+.success-message {
+            text-align: center;
+            color: green;
+            margin-top: 20px;
+        }
+
+        .redirect-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .redirect-button:hover {
+            background: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Your header content here -->
+    <h1>Sign-Up Form</h1>
+    <form action="signup.php" method="post">
+        <label>
+            <span>Username</span>
+            <input type="username" name="username" required />
+        </label>
+        <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+        </label>
+        <label>
+            <span>PhoneNo</span>
+            <input type="phoneno" name="phoneno" required />
+        </label>
+        <label>
+            <span>Password</span>
+            <input type="password" name="password" required />
+        </label>
+        <label>
+            <span>Location</span>
+            <input type="location" name="location" required />
+        </label>
+        <button type="submit" class="submit">Log In</button>
+        <div class="no_account">
+        <p>Don't have an account ?</p>
+        <a href="" style="margin:17px;">Sign Up</a>
+        </div>
+        
+    </form>
+</body>
+</html>
